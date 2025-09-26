@@ -4,15 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Message Us - Leophinx</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦁</text></svg>">
-
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/message.js" defer></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/script.js" defer></script>
 </head>
 <body>
-
   <!-- Navbar -->
   <nav>
     <div class="logo">
@@ -22,8 +20,11 @@
     <div class="nav-links">
       <a href="home.html">Home</a>
       <a href="profile.html">Our Profile</a>
-      <a href="portofolio.html">Portfolio</a>
+      <a href="portofolio.html">Portofolio</a>
       <a href="contact.html" class="active">Message Us</a>
+    </div>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
     </div>
   </nav>
 
@@ -31,29 +32,28 @@
   <section class="message">
     <h2>Message Us</h2>
     <div class="form-container">
-      <form>
-        <!-- Alert akan ditambahkan lewat JS -->
-        
+      <form id="contactForm">
         <label>Nama</label>
-        <input type="text" placeholder="Masukkan nama" required>
+        <input type="text" name="nama" placeholder="Masukkan nama" required>
 
         <label>Email</label>
-        <input type="email" placeholder="contoh@email.com" required>
+        <input type="email" name="email" placeholder="contoh@email.com" required>
 
         <label>No. Telepon</label>
-        <input type="tel" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
+        <input type="tel" name="telepon" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
 
         <label>Tanggal Lahir</label>
-        <input type="date" required>
+        <input type="date" name="tgl" required>
 
-        <label>Jenis Kelamin</label>
-        <div class="gender">
-          <label><input type="radio" name="gender" value="Laki-laki"> Laki-laki</label>
+        <!-- Gender inline -->
+        <div class="form-group">
+          <span>Jenis Kelamin:</span>
+          <label><input type="radio" name="gender" value="Laki-laki" required> Laki-laki</label>
           <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
         </div>
 
         <label>Topik</label>
-        <select required>
+        <select name="topik" required>
           <option value="">-- Pilih Topik --</option>
           <option value="Saran">Saran</option>
           <option value="Keluhan">Keluhan</option>
@@ -62,7 +62,7 @@
         </select>
 
         <label>Pesan</label>
-        <textarea rows="4" placeholder="Tulis pesan anda..." required></textarea>
+        <textarea name="pesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
 
         <button type="submit">Submit</button>
       </form>

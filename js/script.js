@@ -1,6 +1,5 @@
-// js/script.js
 document.addEventListener("DOMContentLoaded", () => {
-  // Highlight active nav link otomatis
+  // ===== Highlight active nav link =====
   const navLinks = document.querySelectorAll("nav .nav-links a");
   const currentPage = window.location.pathname.split("/").pop();
   navLinks.forEach(link => {
@@ -9,7 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Animasi fade-in untuk section
+  // ===== Hamburger menu toggle =====
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".nav-links");
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+      hamburger.classList.toggle("active");
+    });
+  }
+
+  // ===== Fade-in section on scroll =====
   const sections = document.querySelectorAll("section");
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -20,23 +29,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.2 });
   sections.forEach(sec => observer.observe(sec));
 
-  // FORM VALIDATION (khusus contact.html)
+  // ===== Project hover effect =====
+  const projects = document.querySelectorAll(".project");
+  projects.forEach(proj => {
+    proj.addEventListener("mouseenter", () => {
+      proj.style.transform = "translateY(-8px)";
+      proj.style.boxShadow = "0 6px 16px rgba(0,0,0,0.15)";
+      proj.style.transition = "all 0.3s ease";
+    });
+    proj.addEventListener("mouseleave", () => {
+      proj.style.transform = "translateY(0)";
+      proj.style.boxShadow = "0 2px 6px rgba(0,0,0,0.1)";
+    });
+  });
+
+  // ===== FORM VALIDATION (Message Us) =====
   const form = document.querySelector("form");
   const displayBox = document.querySelector(".display-box");
 
   if (form) {
-    // Alert box
-    const alertBox = document.createElement("div");
-    alertBox.className = "alert";
-    alertBox.setAttribute("role", "alert");
-    alertBox.style.display = "none";
-    form.prepend(alertBox);
+    const submitBtn = form.querySelector("button[type='submit']");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector("button[type='submit']");
-      if (submitBtn) submitBtn.disabled = true;
 
+      // Tombol animasi
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.style.transform = "scale(0.95)";
+      }
+
+      // Ambil nilai input
       const nama = form.querySelector("input[type='text']")?.value.trim() || "";
       const email = form.querySelector("input[type='email']")?.value.trim() || "";
       const telepon = form.querySelector("input[type='tel']")?.value.trim() || "";
@@ -45,34 +68,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const topik = form.querySelector("select")?.value || "";
       const pesan = form.querySelector("textarea")?.value.trim() || "";
 
-      // Validasi
+      // Validasi kosong
       if (!nama || !email || !telepon || !tanggal || !genderInput || !topik || !pesan) {
-        showAlert("✖ Harap lengkapi semua field!", "error");
-        if (submitBtn) submitBtn.disabled = false;
-        return;
+        Swal.fire("Oops!", "Harap lengkapi semua field!", "error");
+        return resetBtn();
       }
 
+      // Validasi email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        showAlert("✖ Email tidak valid!", "error");
-        if (submitBtn) submitBtn.disabled = false;
-        return;
+        Swal.fire("Oops!", "Email tidak valid!", "error");
+        return resetBtn();
       }
 
+      // Validasi nomor telepon
       if (!/^[0-9]+$/.test(telepon) || telepon.length < 10 || telepon.length > 13) {
-        showAlert("✖ Nomor telepon harus 10-13 digit angka!", "error");
-        if (submitBtn) submitBtn.disabled = false;
-        return;
+        Swal.fire("Oops!", "Nomor telepon harus 10-13 digit angka!", "error");
+        return resetBtn();
       }
 
+      // Validasi tanggal lahir
       const tglObj = new Date(tanggal);
       if (isNaN(tglObj.getTime()) || tglObj > new Date()) {
-        showAlert("✖ Tanggal lahir tidak valid!", "error");
-        if (submitBtn) submitBtn.disabled = false;
-        return;
+        Swal.fire("Oops!", "Tanggal lahir tidak valid!", "error");
+        return resetBtn();
       }
 
-      // Output data
+      // ===== Output Data =====
       const gender = genderInput.value;
       const tanggalFormatted = tglObj.toLocaleDateString("id-ID", {
         day: "2-digit", month: "long", year: "numeric"
@@ -85,7 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .replaceAll(">", "&gt;");
 
       const outHtml = `
-        <p><strong>Current time:</strong> ${esc(currentTime)}</p>
+        <h3>📌 Data Terkirim</h3>
+        <p><strong>Waktu:</strong> ${esc(currentTime)}</p>
         <p><strong>Nama:</strong> ${esc(nama)}</p>
         <p><strong>Email:</strong> ${esc(email)}</p>
         <p><strong>No. Telepon:</strong> ${esc(telepon)}</p>
@@ -98,29 +121,25 @@ document.addEventListener("DOMContentLoaded", () => {
       if (displayBox) {
         displayBox.innerHTML = outHtml;
         displayBox.style.opacity = 0;
-        setTimeout(() => { displayBox.style.opacity = 1; }, 50);
+        setTimeout(() => {
+          displayBox.style.transition = "opacity 0.5s ease";
+          displayBox.style.opacity = 1;
+        }, 100);
       }
 
-      showAlert("✔ Form berhasil dikirim!", "success");
-      form.reset();
+      // SweetAlert sukses
+      Swal.fire("Sukses!", "Form berhasil dikirim!", "success");
 
-      setTimeout(() => {
-        if (submitBtn) submitBtn.disabled = false;
-      }, 500);
+      // Reset form
+      form.reset();
+      setTimeout(() => resetBtn(), 800);
     });
 
-    // Fungsi Alert
-    function showAlert(message, type = "success") {
-      alertBox.textContent = message;
-      alertBox.classList.remove("success", "error");
-      alertBox.classList.add(type);
-      alertBox.style.display = "block";
-      alertBox.focus?.();
-
-      if (alertBox._timeout) clearTimeout(alertBox._timeout);
-      alertBox._timeout = setTimeout(() => {
-        alertBox.style.display = "none";
-      }, 3000);
+    function resetBtn() {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.style.transform = "scale(1)";
+      }
     }
   }
 });
