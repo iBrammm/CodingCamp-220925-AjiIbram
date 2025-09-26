@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - Leophinx</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦁</text></svg>">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="js/script.js" defer></script>
 </head>
 <body>
@@ -27,19 +27,33 @@
   </nav>
 
   <!-- Hero -->
-  <section class="hero">
-    <h1>Welcome to Leophinx</h1>
-    <p>Kami adalah tim kreatif yang membangun website modern, responsif, dan interaktif.</p>
-    <button onclick="window.location.href='profile.html'">Lihat Profile</button>
-  </section>
+  <header class="hero hero-home">
+    <h1>Selamat Datang di <span>Leophinx</span></h1>
+    <p>Kami adalah tim kreatif yang siap membantu anda dengan solusi terbaik.</p>
+  </header>
 
-  <!-- Headquarter -->
+  <!-- Headquarter Section -->
   <section class="headquarter">
-    <h2>Headquarter</h2>
-    <div class="cities">
-      <div class="city">Jakarta</div>
-      <div class="city">Bandung</div>
-      <div class="city">Surabaya</div>
+    <h2>Our Headquarters</h2>
+    <div class="hq-cards">
+      <div class="hq-card" style="background-image:url('img/jakarta.jpg')">
+        <div class="hq-overlay">
+          <h3>Jakarta</h3>
+          <p>Pusat bisnis utama Leophinx</p>
+        </div>
+      </div>
+      <div class="hq-card" style="background-image:url('img/bandung.jpg')">
+        <div class="hq-overlay">
+          <h3>Bandung</h3>
+          <p>Kota kreatif & teknologi</p>
+        </div>
+      </div>
+      <div class="hq-card" style="background-image:url('img/surabaya.jpg')">
+        <div class="hq-overlay">
+          <h3>Surabaya</h3>
+          <p>Pusat inovasi & industri</p>
+        </div>
+      </div>
     </div>
   </section>
 

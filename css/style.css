@@ -15,6 +15,86 @@ body {
   flex-direction: column;
 }
 
+
+/* HERO khusus Home */
+.hero-home {
+  background: #0077ff; /* ganti warna utama sesuai tema */
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero-home h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero-home span {
+  color: #fff; /* tetap putih biar kontras */
+}
+
+.hero-home p {
+  font-size: 1.1rem;
+}
+
+
+/* Headquarter Section */
+.headquarter {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.headquarter h2 {
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.hq-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.hq-card {
+  position: relative;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.hq-card:hover {
+  transform: scale(1.03);
+}
+
+.hq-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: #fff;
+  text-align: left;
+}
+
+.hq-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.hq-overlay p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+}
+
+
+
+
 img {
   max-width: 100%;
   display: block;
@@ -139,11 +219,24 @@ nav {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: 0.3s;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+  max-width: 280px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.city img {
+  border-radius: 12px;
+  transition: transform 0.5s ease;
 }
 
 .city:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.city:hover img {
+  transform: scale(1.1);
 }
 
 /* ===== PROFILE ===== */
@@ -161,11 +254,13 @@ nav {
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   width: 250px;
-  transition: 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .member:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* ===== PORTOFOLIO ===== */
@@ -181,11 +276,13 @@ nav {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .project:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* ===== FORM ===== */
@@ -205,6 +302,7 @@ form {
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: left;
+  animation: fadeIn 1s ease-in-out;
 }
 
 form label {
@@ -246,6 +344,7 @@ form button:hover {
   border-radius: 15px;
   box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
   text-align: left;
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* ===== ALERT ===== */
@@ -308,24 +407,25 @@ footer {
   }
 
   .contact form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 500px;
-  margin: auto;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: auto;
+  }
 
-.form-group {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+  .form-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-.form-group span {
-  font-weight: 600;
-  margin-right: 0.5rem;
-}
-.form-group input[type="radio"] {
-  margin-right: 0.5rem;
+  .form-group span {
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+
+  .form-group input[type="radio"] {
+    margin-right: 0.5rem;
   }
 }
