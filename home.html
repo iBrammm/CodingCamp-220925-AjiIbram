@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Profile</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Leophinx</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦁</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
+  <!-- Navbar -->
   <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="profile.html">Our Profile</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="contact.html">Message Us</a></li>
-    </ul>
+    <div class="logo">
+      <div class="logo-icon">🦁</div>
+      <span class="logo-text">Leophinx</span>
+    </div>
+    <div class="nav-links">
+      <a href="home.html" class="active">Home</a>
+      <a href="profile.html">Our Profile</a>
+      <a href="portofolio.html">portofolio</a>
+      <a href="contact.html">Message Us</a>
+    </div>
   </nav>
 
-  <main>
-    <h1 id="greeting">Hi, </h1>
-    <p>Selamat datang di website resmi perusahaan kami!</p>
-  </main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Leophinx</h1>
+    <p>Website latihan pertama yang dibuat dengan HTML, CSS, dan JavaScript.</p>
+    <button onclick="location.href='profile.html'">Lihat Profil Kami</button>
+  </section>
 
-  <script src="js/script.js"></script>
+  <!-- Headquarter Section -->
+  <section class="headquarter">
+    <h2>Our Headquarter</h2>
+    <div class="cities">
+      <div class="city">🏙 Jakarta</div>
+      <div class="city">🌆 Bandung</div>
+      <div class="city">🌉 Surabaya</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    Created By Leophinx Team
+  </footer>
 </body>
 </html>
